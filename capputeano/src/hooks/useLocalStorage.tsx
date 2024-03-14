@@ -9,8 +9,6 @@ export function useLocalStorage<T>(item: string) {
     //     if(value) setValue(JSON.parse(value))
     // },[window])
 
-
-
     const updateLocalStorage = (newValue: T) => {
         setValue(newValue)
         localStorage.setItem(item, JSON.stringify(newValue))
