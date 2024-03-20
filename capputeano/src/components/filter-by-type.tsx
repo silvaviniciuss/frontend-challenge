@@ -17,14 +17,25 @@ const FilterList = styled.ul`
 const FilterItem = styled.li<FilterItemProps>`
     font-family: inherit;
     font-weight: ${props => props.selected ? '600' : '400'};
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 18px;
     text-align: center;
     text-transform: uppercase;
     color: var(--text-dark);
     cursor: pointer;
 
     border-bottom: ${props => props.selected ? '4px solid var(--orange-low)' : ''};
+
+    
+    @media (min-width: ${({ theme }) => theme.tabletBreakpoint}) {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.desktopBreakpoint}) {
+        font-size: 16px;
+        line-height: 22px;
+    }
 
 `
 
@@ -38,18 +49,18 @@ export function FilterByType() {
         <FilterList>
             <FilterItem
                 selected={type === FilterType.ALL}
-                onClick={()=>handleChangeType(FilterType.ALL)}
-                >Todos os Produtos
+                onClick={() => handleChangeType(FilterType.ALL)}
+            >Todos os Produtos
             </FilterItem>
             <FilterItem
                 selected={type === FilterType.SHIRT}
-                onClick={()=>handleChangeType(FilterType.SHIRT)}
-                >Camisetas
+                onClick={() => handleChangeType(FilterType.SHIRT)}
+            >Camisetas
             </FilterItem>
             <FilterItem
                 selected={type === FilterType.MUG}
-                onClick={()=>handleChangeType(FilterType.MUG)}
-                >Canecas
+                onClick={() => handleChangeType(FilterType.MUG)}
+            >Canecas
             </FilterItem>
         </FilterList>
     )

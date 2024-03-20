@@ -1,23 +1,28 @@
 import styled from "styled-components";
-import { SearchLoupe } from "./search-loupe";
+import { SearchLoupe } from "./icons/search-loupe";
 import { InputHTMLAttributes } from "react";
 
 export const InputSearch = styled.input`
-    width: 352px;
+    width: 100%;
     padding: 10px 16px;
     border: none;
     border-radius: 8px;
     background-color: var(--background-color-input);
     font-family: inherit;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 22px;
+    line-height: 20px;
     color: var(--text-dark);
+
+    @media (min-width: ${({theme}) => theme.desktopBreakpoint}) {
+        font-size: 14px;
+        line-height: 22px;
+    }
 `
 
 const InputContainer = styled.div`
     position: relative;
-    width: 352px;
+    width: 250px;
 
     svg {
         position: absolute;
@@ -26,14 +31,20 @@ const InputContainer = styled.div`
         transform: translateY(-50%);
     }
 
+    @media (min-width: ${({theme}) => theme.desktopBreakpoint}) {
+        width: 352px;
+    }
 `
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement>{}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+    value: string,
+    handleChange: (value: string) => void
+}
 
-export function InputWithSearchLoupe ({placeholder}: InputProps) {
+export function InputWithSearchLoupe (props: InputProps) {
     return (
         <InputContainer>
-            <InputSearch placeholder={placeholder}/>
+            <InputSearch onChange={(e:any) => props.handleChange(e.target.value)} {...props}/>
             <SearchLoupe/>
         </InputContainer>
     )
